@@ -1,4 +1,5 @@
 owner: Lunar1020
 repo: NiAmy-Launcher
 provider: github
+private: true
 token: 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
