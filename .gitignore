@@ -1,6 +1,6 @@
-!node_modules/
-node_modules/*
-!node_modules/helios-core/*
+!/node_modules/
+/node_modules/*
+!/node_modules/helios-core/*
 /.vs/
 /.vscode/
 /target/
