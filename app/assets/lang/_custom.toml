@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "NiEmy Launcher"
+title = "NiAmy Launcher"
 
 [ejs.landing]
 mediaGitHubURL = "https://www.moondoor.r-e.kr/"
@@ -11,8 +11,8 @@ mediaYouTubeURL = "#"
 mediaDiscordURL = "https://discord.gg/aCBq9KmmrB"
 
 [ejs.settings]
-sourceGithubLink = "https://github.com/dscalZi/HeliosLauncher"
-supportLink = "https://github.com/dscalZi/HeliosLauncher/issues"
+sourceGithubLink = "https://github.com/Lunar1020/NiAmy-Launcher"
+supportLink = "https://github.com/Lunar1020/NiAmy-Launcher/issues"
 
 [ejs.welcome]
 welcomeHeader = "반갑습니다! 👋"
