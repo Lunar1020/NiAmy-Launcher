@@ -204,10 +204,6 @@ function saveSettingsValues(){
                 } else if(v.type === 'checkbox'){
                     sFnOpts.push(v.checked)
                     sFn.apply(null, sFnOpts)
-                    // Special Conditions
-                    if(cVal === 'AllowPrerelease'){
-                        changeAllowPrerelease(v.checked)
-                    }
                 }
             } else if(v.tagName === 'DIV'){
                 if(v.classList.contains('rangeSlider')){
@@ -1244,12 +1240,6 @@ const settingsTabAbout             = document.getElementById('settingsTabAbout')
 const settingsAboutChangelogTitle  = settingsTabAbout.getElementsByClassName('settingsChangelogTitle')[0]
 const settingsAboutChangelogText   = settingsTabAbout.getElementsByClassName('settingsChangelogText')[0]
 const settingsAboutChangelogButton = settingsTabAbout.getElementsByClassName('settingsChangelogButton')[0]
-
-// Bind the devtools toggle button.
-document.getElementById('settingsAboutDevToolsButton').onclick = (e) => {
-    let window = remote.getCurrentWindow()
-    window.toggleDevTools()
-}
 
 /**
  * Return whether or not the provided version is a prerelease.

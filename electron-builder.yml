@@ -1,5 +1,5 @@
-appId: 'niamylauncher'
-productName: 'NiAmy Launcher'
+appId: 'snap'
+productName: 'Snap'
 artifactName: '${productName}-setup-${version}.${ext}'
 
 copyright: 'Copyright © 2024-2024 Shortcuts.'
