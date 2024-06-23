@@ -1,8 +1,8 @@
 {
-  "name": "niamylauncher",
-  "version": "0.0.4",
-  "productName": "NiAmy Launcher",
-  "description": "Modded Minecraft Launcher",
+  "name": "snap",
+  "version": "0.0.6",
+  "productName": "Snap",
+  "description": "Snap for Shortcuts",
   "author": "Lunar (https://github.com/Lunar1020/)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/Lunar1020/NiAmy-Launcher",
@@ -49,6 +49,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lunar1020/NiAmy-Launcher"
+    "url": "git+https://github.com/Lunar1020/NiAmy-Launcher.git"
   }
 }
