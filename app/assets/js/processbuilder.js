@@ -87,7 +87,6 @@ class ProcessBuilder {
 
         child.stdout.on('data', (data) => {
             data.trim().split('\n').forEach(x => console.log(`\x1b[32m[Minecraft]\x1b[0m ${x}`))
-            
         })
         child.stderr.on('data', (data) => {
             data.trim().split('\n').forEach(x => console.log(`\x1b[31m[Minecraft]\x1b[0m ${x}`))
@@ -368,13 +367,20 @@ class ProcessBuilder {
 
         // Java Arguments
         if(process.platform === 'darwin'){
-            args.push('-Xdock:name=HeliosLauncher')
+            args.push('-Xdock:name=Snap')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
         args.push('-Xms' + ConfigManager.getMinRAM(this.server.rawServer.id))
         args = args.concat(ConfigManager.getJVMOptions(this.server.rawServer.id))
         args.push('-Djava.library.path=' + tempNativePath)
+        args.push('-Dminecraft.api.env=custom')
+        args.push('-Dminecraft.api.auth.host=https://www.moondoor.r-e.kr/auth')
+        args.push('-Dminecraft.api.account.host=https://www.moondoor.r-e.kr/account')
+        args.push('-Dminecraft.api.session.host=https://www.moondoor.r-e.kr/session')
+        args.push('-Dminecraft.api.services.host=https://www.moondoor.r-e.kr/services')
+        args.push('-javaagent:snaplib.jar=www.moondoor.r-e.kr')
+        args.push('-Dauthlibinjector.noLogFile')
 
         // Main Java Class
         args.push(this.modManifest.mainClass)
@@ -419,12 +425,19 @@ class ProcessBuilder {
 
         // Java Arguments
         if(process.platform === 'darwin'){
-            args.push('-Xdock:name=HeliosLauncher')
+            args.push('-Xdock:name=Snap')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
         args.push('-Xms' + ConfigManager.getMinRAM(this.server.rawServer.id))
         args = args.concat(ConfigManager.getJVMOptions(this.server.rawServer.id))
+        args.push('-Dminecraft.api.env=custom')
+        args.push('-Dminecraft.api.auth.host=https://www.moondoor.r-e.kr/auth')
+        args.push('-Dminecraft.api.account.host=https://www.moondoor.r-e.kr/account')
+        args.push('-Dminecraft.api.session.host=https://www.moondoor.r-e.kr/session')
+        args.push('-Dminecraft.api.services.host=https://www.moondoor.r-e.kr/services')
+        args.push('-javaagent:snaplib.jar=www.moondoor.r-e.kr')
+        args.push('-Dauthlibinjector.noLogFile')
 
         // Main Java Class
         args.push(this.modManifest.mainClass)
@@ -506,7 +519,7 @@ class ProcessBuilder {
                             val = this.authUser.accessToken
                             break
                         case 'user_type':
-                            val = this.authUser.type === 'microsoft' ? 'msa' : 'mojang'
+                            val = this.authUser.type === 'mojang'
                             break
                         case 'version_type':
                             val = this.vanillaManifest.type
@@ -521,7 +534,7 @@ class ProcessBuilder {
                             val = args[i].replace(argDiscovery, tempNativePath)
                             break
                         case 'launcher_name':
-                            val = args[i].replace(argDiscovery, 'Helios-Launcher')
+                            val = args[i].replace(argDiscovery, 'Snap')
                             break
                         case 'launcher_version':
                             val = args[i].replace(argDiscovery, this.launcherVersion)
@@ -590,7 +603,7 @@ class ProcessBuilder {
                         val = this.authUser.accessToken
                         break
                     case 'user_type':
-                        val = this.authUser.type === 'microsoft' ? 'msa' : 'mojang'
+                        val = this.authUser.type === 'mojang'
                         break
                     case 'user_properties': // 1.8.9 and below.
                         val = '{}'

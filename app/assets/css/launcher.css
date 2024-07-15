@@ -18,6 +18,11 @@
 }
 
 @font-face {
+    font-family: 'asdf';
+    src: url('../fonts/AppleSDGothicNeoL.ttf');
+}
+
+@font-face {
     font-family: 'Ringbearer';
     src: url('../fonts/Ringbearer.ttf');
 }
@@ -27,6 +32,11 @@
  * Element Styles                                                              *
  *                                                                             *
  ******************************************************************************/
+
+*, *::after, *::before {
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+}
 
 /* Reset body, html, and div presets. */
 body, html, div {
@@ -495,7 +505,7 @@ body, button {
 #loginSubheader {
     font-family: 'Avenir Medium';
     margin-bottom: 25px;
-    font-size: 12px;
+    font-size: 20px;
     letter-spacing: 1px;
     font-weight: bold;
 }
@@ -554,7 +564,7 @@ body, button {
 
 /* Login text input styles. */
 .loginField {
-    font-family: 'Avenir Book';
+    font-family: 'asdf';
     background: none;
     border-width: 1.5px 0px 0px 0px;
     border-style: solid;
@@ -566,7 +576,7 @@ body, button {
     text-align: center;
     box-sizing: border-box;
     padding: 7.5px;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 1px;
 }
 .loginField:focus {
@@ -577,7 +587,7 @@ body, button {
 }
 .loginField::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.75);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 1px;
     text-align: center;
     font-weight: bold;
@@ -994,7 +1004,7 @@ body, button {
     height: 50px;
     width: 100%;
     text-align: left;
-    padding: 0px 25px;
+    padding: 0px 60px;
     cursor: pointer;
     outline: none;
     transition: 0.25s ease;
@@ -3130,6 +3140,7 @@ input:checked + .toggleSwitchSlider:before {
     transition-delay:0s;
 }
 
+
 /* Twitter icon colors. */
 #twitterSVG:hover,
 #twitterURL:focus #twitterSVG {
@@ -3200,10 +3211,14 @@ input:checked + .toggleSwitchSlider:before {
     width: 75px;
 }
 
+#landingPlayerLabel {
+    font-size: 12px;
+}
+
 /* Span which displays the player count of the selected server. */
 #player_count {
     color: #949494;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 900;
     text-shadow: 0px 0px 20px #949494;
     margin-left: 10px;
@@ -3370,7 +3385,7 @@ input:checked + .toggleSwitchSlider:before {
     font-weight: 900;
     letter-spacing: 2px;
     text-shadow: 0px 0px 0px #bebcbb;
-    font-size: 11px;
+    font-size: 15px;
     line-height: 30px;
     display: flex;
     transition: 0.25s ease;
@@ -3399,6 +3414,7 @@ input:checked + .toggleSwitchSlider:before {
     padding: 0px;
     transition: 0.25s ease;
     outline: none;
+    font-family: 'asdf';
 }
 #launch_button:hover,
 #launch_button:focus {
@@ -3451,6 +3467,7 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     cursor: pointer;
     line-height: 24px;
+    font-size: 15px;
     padding: 0px;
     transition: 0.25s ease;
 }
