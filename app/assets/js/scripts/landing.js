@@ -100,26 +100,55 @@ function setLaunchEnabled(val){
 
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', async e => {
-    loggerLanding.info('Launching game..')
     try {
-        const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
-        const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
-        if(jExe == null){
-            await asyncSystemScan(server.effectiveJavaOptions)
-        } else {
-
-            setLaunchDetails(Lang.queryJS('landing.launch.pleaseWait'))
-            toggleLaunchArea(true)
-            setLaunchPercentage(0, 100)
-
-            const details = await validateSelectedJvm(ensureJavaDirIsRoot(jExe), server.effectiveJavaOptions.supported)
-            if(details != null){
-                loggerLanding.info('Jvm Details', details)
-                await dlAsync()
-
-            } else {
-                await asyncSystemScan(server.effectiveJavaOptions)
+        async function asdf(){
+            const current = ConfigManager.getSelectedAccount()
+            const response = await MojangRestAPI.validate(current.accessToken, ConfigManager.getClientToken())
+            if(response.responseStatus === RestResponseStatus.SUCCESS) {
+                const refreshResponse = await MojangRestAPI.refresh(current.accessToken, ConfigManager.getClientToken())
+                if(refreshResponse.responseStatus === RestResponseStatus.SUCCESS) {
+                    const session = refreshResponse.data
+                    ConfigManager.updateMojangAuthAccount(current.uuid, session.accessToken)
+                    ConfigManager.save()
+                } else {
+                    loggerLanding.error('Error while validating selected profile:', refreshResponse.error)
+                    loggerLanding.info('Account access token is invalid.')
+                    return false
+                }
+                loggerLanding.info('Account access token validated.')
+                return true
             }
+        }
+        if(await asdf() === true) {
+            loggerLanding.info('Launching game..')
+            try {
+                const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
+                const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
+                if(jExe == null){
+                    await asyncSystemScan(server.effectiveJavaOptions)
+                } else {
+
+                    setLaunchDetails(Lang.queryJS('landing.launch.pleaseWait'))
+                    toggleLaunchArea(true)
+                    setLaunchPercentage(0, 100)
+
+                    const details = await validateSelectedJvm(ensureJavaDirIsRoot(jExe), server.effectiveJavaOptions.supported)
+                    if(details != null){
+                        loggerLanding.info('Jvm Details', details)
+                        await dlAsync()
+
+                    } else {
+                        await asyncSystemScan(server.effectiveJavaOptions)
+                    }
+                }
+            } catch(err) {
+                loggerLanding.error('Unhandled error in during launch process.', err)
+                showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'))
+            }
+        } else {
+            loggerLanding.error('account error')
+            showvalidateSelectedAccount()
+            // showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'))
         }
     } catch(err) {
         loggerLanding.error('Unhandled error in during launch process.', err)
@@ -163,7 +192,7 @@ function updateSelectedServer(serv){
     }
     ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
-    server_selection_button.innerHTML = '&#8226; ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
+    server_selection_button.innerHTML = '📋 ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
     if(getCurrentView() === VIEWS.settings){
         animateSettingsTabRefresh()
     }
@@ -177,63 +206,7 @@ server_selection_button.onclick = async e => {
 }
 
 // Update Mojang Status Color
-const refreshMojangStatuses = async function(){
-    loggerLanding.info('Refreshing Mojang Statuses..')
 
-    let status = 'grey'
-    let tooltipEssentialHTML = ''
-    let tooltipNonEssentialHTML = ''
-
-    const response = await MojangRestAPI.status()
-    let statuses
-    if(response.responseStatus === RestResponseStatus.SUCCESS) {
-        statuses = response.data
-    } else {
-        loggerLanding.warn('Unable to refresh Mojang service status.')
-        statuses = MojangRestAPI.getDefaultStatuses()
-    }
-    
-    greenCount = 0
-    greyCount = 0
-
-    for(let i=0; i<statuses.length; i++){
-        const service = statuses[i]
-
-        const tooltipHTML = `<div class="mojangStatusContainer">
-            <span class="mojangStatusIcon" style="color: ${MojangRestAPI.statusToHex(service.status)};">&#8226;</span>
-            <span class="mojangStatusName">${service.name}</span>
-        </div>`
-        if(service.essential){
-            tooltipEssentialHTML += tooltipHTML
-        } else {
-            tooltipNonEssentialHTML += tooltipHTML
-        }
-
-        if(service.status === 'yellow' && status !== 'red'){
-            status = 'yellow'
-        } else if(service.status === 'red'){
-            status = 'red'
-        } else {
-            if(service.status === 'grey'){
-                ++greyCount
-            }
-            ++greenCount
-        }
-
-    }
-
-    if(greenCount === statuses.length){
-        if(greyCount === statuses.length){
-            status = 'grey'
-        } else {
-            status = 'green'
-        }
-    }
-    
-    document.getElementById('mojangStatusEssentialContainer').innerHTML = tooltipEssentialHTML
-    document.getElementById('mojangStatusNonEssentialContainer').innerHTML = tooltipNonEssentialHTML
-    document.getElementById('mojang_status_icon').style.color = MojangRestAPI.statusToHex(status)
-}
 
 const refreshServerStatus = async (fade = false) => {
     loggerLanding.info('Refreshing Server Status')
@@ -266,7 +239,7 @@ const refreshServerStatus = async (fade = false) => {
     
 }
 
-refreshMojangStatuses()
+
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
 
 // Refresh statuses every hour. The status page itself refreshes every day so...
@@ -289,6 +262,79 @@ function showLaunchFailure(title, desc){
     setOverlayHandler(null)
     toggleOverlay(true)
     toggleLaunchArea(false)
+}
+
+async function showvalidateSelectedAccount(){
+    const selectedAcc = ConfigManager.getSelectedAccount()
+    ConfigManager.removeAuthAccount(selectedAcc.uuid)
+    ConfigManager.save()
+    const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
+    setOverlayContent(
+        Lang.queryJS('uibinder.validateAccount.failedMessageTitle'),
+        accLen > 0
+            ? Lang.queryJS('uibinder.validateAccount.failedMessage', { 'account': selectedAcc.displayName })
+            : Lang.queryJS('uibinder.validateAccount.failedMessageSelectAnotherAccount', { 'account': selectedAcc.displayName }),
+        Lang.queryJS('uibinder.validateAccount.loginButton'),
+        Lang.queryJS('uibinder.validateAccount.selectAnotherAccountButton')
+    )
+    setOverlayHandler(() => {
+
+        const isMicrosoft = selectedAcc.type === 'microsoft'
+
+        if(isMicrosoft) {
+            // Empty for now
+        } else {
+            // Mojang
+            // For convenience, pre-populate the username of the account.
+            document.getElementById('loginUsername').value = selectedAcc.username
+            validateEmail(selectedAcc.username)
+        }
+        
+        loginOptionsViewOnLoginSuccess = getCurrentView()
+        loginOptionsViewOnLoginCancel = VIEWS.loginOptions
+
+        if(accLen > 0) {
+            loginOptionsViewOnCancel = getCurrentView()
+            loginOptionsViewCancelHandler = () => {
+                if(isMicrosoft) {
+                    ConfigManager.addMicrosoftAuthAccount(
+                        selectedAcc.uuid,
+                        selectedAcc.accessToken,
+                        selectedAcc.username,
+                        selectedAcc.expiresAt,
+                        selectedAcc.microsoft.access_token,
+                        selectedAcc.microsoft.refresh_token,
+                        selectedAcc.microsoft.expires_at
+                    )
+                } else {
+                    ConfigManager.addMojangAuthAccount(selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username, selectedAcc.displayName)
+                }
+                ConfigManager.save()
+                validateSelectedAccount()
+            }
+            loginOptionsCancelEnabled(true)
+        } else {
+            loginOptionsCancelEnabled(false)
+        }
+        toggleOverlay(false)
+        switchView(getCurrentView(), VIEWS.loginOptions)
+    })
+    setDismissHandler(() => {
+        if(accLen > 1){
+            prepareAccountSelectionList()
+            $('#overlayContent').fadeOut(250, () => {
+                bindOverlayKeys(true, 'accountSelectContent', true)
+                $('#accountSelectContent').fadeIn(250)
+            })
+        } else {
+            const accountsObj = ConfigManager.getAuthAccounts()
+            const accounts = Array.from(Object.keys(accountsObj), v => accountsObj[v])
+            // This function validates the account switch.
+            setSelectedAccount(accounts[0].uuid)
+            toggleOverlay(false)
+        }
+    })
+    toggleOverlay(true, accLen > 0)
 }
 
 /* System (Java) Scan */
@@ -449,7 +495,7 @@ async function dlAsync(login = true) {
 
     // Login parameter is temporary for debug purposes. Allows testing the validation/downloads without
     // launching the game.
-
+    
     const loggerLaunchSuite = LoggerUtil.getLogger('LaunchSuite')
 
     setLaunchDetails(Lang.queryJS('landing.dlAsync.loadingServerInfo'))
@@ -645,7 +691,6 @@ const newsContent                   = document.getElementById('newsContent')
 const newsArticleTitle              = document.getElementById('newsArticleTitle')
 const newsArticleDate               = document.getElementById('newsArticleDate')
 const newsArticleAuthor             = document.getElementById('newsArticleAuthor')
-const newsArticleComments           = document.getElementById('newsArticleComments')
 const newsNavigationStatus          = document.getElementById('newsNavigationStatus')
 const newsArticleContentScrollable  = document.getElementById('newsArticleContentScrollable')
 const nELoadSpan                    = document.getElementById('nELoadSpan')
@@ -937,10 +982,8 @@ document.addEventListener('keydown', (e) => {
 function displayArticle(articleObject, index){
     newsArticleTitle.innerHTML = articleObject.title
     newsArticleTitle.href = articleObject.link
-    newsArticleAuthor.innerHTML = 'by ' + articleObject.author
+    newsArticleAuthor.innerHTML = articleObject.author
     newsArticleDate.innerHTML = articleObject.date
-    newsArticleComments.innerHTML = articleObject.comments
-    newsArticleComments.href = articleObject.commentsLink
     newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + articleObject.content + '<div class="newsArticleSpacerBot"></div></div>'
     Array.from(newsArticleContentScrollable.getElementsByClassName('bbCodeSpoilerButton')).forEach(v => {
         v.onclick = () => {
@@ -981,10 +1024,6 @@ async function loadNews(){
                     // Resolve date.
                     const date = new Date(el.find('pubDate').text()).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric'})
 
-                    // Resolve comments.
-                    let comments = el.find('slash\\:comments').text() || '0'
-                    comments = comments + ' Comment' + (comments === '1' ? '' : 's')
-
                     // Fix relative links in content.
                     let content = el.find('content\\:encoded').text()
                     let regex = /src="(?!http:\/\/|https:\/\/)(.+?)"/g
@@ -1005,8 +1044,6 @@ async function loadNews(){
                             date,
                             author,
                             content,
-                            comments,
-                            commentsLink: link + '#comments'
                         }
                     )
                 }
