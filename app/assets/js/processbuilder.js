@@ -375,12 +375,14 @@ class ProcessBuilder {
         args = args.concat(ConfigManager.getJVMOptions(this.server.rawServer.id))
         args.push('-Djava.library.path=' + tempNativePath)
         args.push('-Dminecraft.api.env=custom')
-        args.push('-Dminecraft.api.auth.host=https://www.moondoor.r-e.kr/auth')
-        args.push('-Dminecraft.api.account.host=https://www.moondoor.r-e.kr/account')
-        args.push('-Dminecraft.api.session.host=https://www.moondoor.r-e.kr/session')
-        args.push('-Dminecraft.api.services.host=https://www.moondoor.r-e.kr/services')
-        args.push('-javaagent:snaplib.jar=www.moondoor.r-e.kr')
+        args.push('-Dminecraft.api.auth.host=http://www.moondoor.r-e.kr:25585/auth')
+        args.push('-Dminecraft.api.account.host=http://www.moondoor.r-e.kr:25585/account')
+        args.push('-Dminecraft.api.session.host=http://www.moondoor.r-e.kr:25585/session')
+        args.push('-Dminecraft.api.services.host=http://www.moondoor.r-e.kr:25585/services')
+        args.push('-javaagent:snaplib.jar=http://www.moondoor.r-e.kr:25585')
         args.push('-Dauthlibinjector.noLogFile')
+        args.push('-Dauthlibinjector.mojangAntiFeatures=enabled')
+        args.push('-Dauthlibinjector.profileKey=enabled')
 
         // Main Java Class
         args.push(this.modManifest.mainClass)
@@ -432,12 +434,14 @@ class ProcessBuilder {
         args.push('-Xms' + ConfigManager.getMinRAM(this.server.rawServer.id))
         args = args.concat(ConfigManager.getJVMOptions(this.server.rawServer.id))
         args.push('-Dminecraft.api.env=custom')
-        args.push('-Dminecraft.api.auth.host=https://www.moondoor.r-e.kr/auth')
-        args.push('-Dminecraft.api.account.host=https://www.moondoor.r-e.kr/account')
-        args.push('-Dminecraft.api.session.host=https://www.moondoor.r-e.kr/session')
-        args.push('-Dminecraft.api.services.host=https://www.moondoor.r-e.kr/services')
-        args.push('-javaagent:snaplib.jar=www.moondoor.r-e.kr')
+        args.push('-Dminecraft.api.auth.host=http://www.moondoor.r-e.kr:25585/auth')
+        args.push('-Dminecraft.api.account.host=http://www.moondoor.r-e.kr:25585/account')
+        args.push('-Dminecraft.api.session.host=http://www.moondoor.r-e.kr:25585/session')
+        args.push('-Dminecraft.api.services.host=http://www.moondoor.r-e.kr:25585/services')
+        args.push('-javaagent:snaplib.jar=http://www.moondoor.r-e.kr:25585')
         args.push('-Dauthlibinjector.noLogFile')
+        args.push('-Dauthlibinjector.mojangAntiFeatures=enabled')
+        args.push('-Dauthlibinjector.profileKey=enabled')
 
         // Main Java Class
         args.push(this.modManifest.mainClass)
@@ -500,8 +504,8 @@ class ProcessBuilder {
                             val = this.authUser.displayName.trim()
                             break
                         case 'version_name':
-                            //val = vanillaManifest.id
-                            val = this.server.rawServer.id
+                            val = this.vanillaManifest.id
+                            //val = this.server.rawServer.id
                             break
                         case 'game_directory':
                             val = this.gameDir
@@ -522,7 +526,7 @@ class ProcessBuilder {
                             val = this.authUser.type === 'mojang'
                             break
                         case 'version_type':
-                            val = this.vanillaManifest.type
+                            val = 'Shortcuts'
                             break
                         case 'resolution_width':
                             val = ConfigManager.getGameWidth()
@@ -584,8 +588,8 @@ class ProcessBuilder {
                         val = this.authUser.displayName.trim()
                         break
                     case 'version_name':
-                        //val = vanillaManifest.id
-                        val = this.server.rawServer.id
+                        val = this.vanillaManifest.id
+                        //val = this.server.rawServer.id
                         break
                     case 'game_directory':
                         val = this.gameDir
@@ -609,7 +613,7 @@ class ProcessBuilder {
                         val = '{}'
                         break
                     case 'version_type':
-                        val = this.vanillaManifest.type
+                        val = 'Shortcuts'
                         break
                 }
                 if(val != null){
@@ -631,7 +635,7 @@ class ProcessBuilder {
             mcArgs.push('--height')
             mcArgs.push(ConfigManager.getGameHeight())
         }
-        
+
         // Mod List File Argument
         mcArgs.push('--modListFile')
         if(this._lteMinorVersion(9)) {
