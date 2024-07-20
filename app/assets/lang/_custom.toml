@@ -4,7 +4,7 @@
 title = "Snap"
 
 [ejs.landing]
-mediaGitHubURL = "https://www.moondoor.r-e.kr/"
+mediaGitHubURL = "http://www.moondoor.r-e.kr:25585/"
 mediaTwitterURL = "#"
 mediaInstagramURL = "#"
 mediaYouTubeURL = "#"
@@ -12,7 +12,7 @@ mediaDiscordURL = "https://discord.gg/aCBq9KmmrB"
 
 [ejs.settings]
 sourceGithubLink = "https://discord.gg/aCBq9KmmrB"
-supportLink = "https://www.moondoor.r-e.kr/"
+supportLink = "http://www.moondoor.r-e.kr:25585/"
 
 [ejs.welcome]
 welcomeHeader = "반갑습니다! 👋"
