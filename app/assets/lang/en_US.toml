@@ -1,0 +1,342 @@
+[ejs.landing]
+updateAvailableTooltip = "업데이트 사용가능"
+usernamePlaceholder = "닉네임"
+usernameEditButton = "변경"
+settingsTooltip = "⚙️ 설정"
+serverStatus = "서버"
+serverStatusPlaceholder = "오프라인"
+mojangStatus = "상태"
+mojangStatusTooltipTitle = "서비스"
+mojangStatusNETitle = "asdf"
+newsButton = "📰뉴스"
+launchButton = "🚀시작"
+launchButtonPlaceholder = "&#8226; No Server Selected"
+launchDetails = "기다려주세요.."
+newsNavigationStatus = "{currentPage} - {totalPages}"
+newsErrorLoadSpan = "📰뉴스 확인중.."
+newsErrorFailedSpan = "📰뉴스를 불러오는데 실패했습니다."
+newsErrorRetryButton = "다시 시도하기"
+newsErrorNoneSpan = "📰뉴스 없음"
+
+[ejs.login]
+loginCancelText = "닫기"
+loginSubheader = "Shortcuts Login"
+loginEmailError = "* 올바르지 않음"
+loginEmailPlaceholder = "닉네임"
+loginPasswordError = "* 필수 입력란"
+loginPasswordPlaceholder = "비밀번호"
+loginForgotPasswordLink = "https://discord.gg/aCBq9KmmrB"
+loginForgotPasswordText = "비밀번호를 잊으셨나요?"
+loginRememberMeText = "로그인 기억하기"
+loginButtonText = "🔐 로그인"
+loginNeedAccountLink = "https://www.moondoor.r-e.kr/drasl/registration"
+loginNeedAccountText = "계정이 없으신가요?"
+loginPasswordDisclaimer1 = "당신의 개인정보는 저장되지 않습니다."
+loginPasswordDisclaimer2 = "{appName}는 사용자의 개인정보보호를 준수합니다."
+
+[ejs.loginOptions]
+loginOptionsTitle = "🔐 로그인"
+loginWithMicrosoft = "Login with Microsoft"
+loginWithMojang = "Shortcuts로 로그인"
+cancelButton = "취소"
+
+[ejs.overlay]
+serverSelectHeader = "📋서버 목록"
+serverSelectConfirm = "선택"
+serverSelectCancel = "취소"
+accountSelectHeader = "🪪 계정 선택"
+accountSelectConfirm = "선택"
+accountSelectCancel = "취소"
+
+[ejs.settings]
+navHeaderText = "⚙️ 설정"
+navAccount = "🔐 계정"
+navMinecraft = "🕹️ 게임"
+navMods = "👀 기능"
+navJava = "☕ Java"
+navAbout = "📜 정보"
+navUpdates = "☁️ 업데이트"
+navDone = "완료"
+tabAccountHeaderText = "🔐 계정 설정"
+tabAccountHeaderDesc = "계정을 추가하거나, 삭제할 수 있습니다."
+microsoftAccount = "Microsoft"
+addMicrosoftAccount = "+ Add Microsoft Account"
+mojangAccount = "Shortcuts"
+addMojangAccount = "+ Shortcuts 계정 추가"
+minecraftTabHeaderText = "🕹️ 게임 설정"
+minecraftTabHeaderDesc = "게임 실행에 관한 설정입니다."
+gameResolutionTitle = "👀 게임 화질"
+launchFullscreenTitle = "🖥️ 전체화면으로 시작하기"
+autoConnectTitle = "Automatically connect to the server on launch."
+launchDetachedTitle = "✂️ 게임과 런처 분리"
+launchDetachedDesc = "게임이 분리되지 않은 경우 런처를 닫으면 게임도 닫힙니다."
+tabModsHeaderText = "👀 기능 설정"
+tabModsHeaderDesc = "기능을 키거나 끌 수 있습니다. 장치에 따라 게임 실행에 큰 영향을 줍니다. (고급)"
+shaderpacks = "✨ 셰이더"
+shaderpackDesc = "⚠️ 셰이더를 실행하는데 많은 사양이 요구될 수 있습니다. 셰이더 기능을 켜야 이용할 수 있습니다."
+selectShaderpack = "✨ 셰이더팩 선택"
+switchServerButton = "변경하기"
+requiredMods = "Required Mods"
+optionalMods = "👀 기능 선택"
+optionalModsDesc = "⚠️ 일부 기능은 실행하는데 많은 사양이 요구될 수 있습니다."
+dropinRefreshNote = "(F5 to Refresh)"
+tabJavaHeaderText = "☕ Java 설정"
+tabJavaHeaderDesc = "⚠️ Java 설정을 관리할 수 있습니다. 게임 실행에 큰 영향을 줍니다. (고급)"
+memoryTitle = "📊 메모리"
+maxRAM = "📈 최대 메모리"
+minRAM = "📉 최소 메모리"
+memoryDesc = "⚠️ 권장하는 최소 메모리는 3G 입니다.<br>최소 메모리와 최대 메모리를 동일한 값으로 설정하면 지연이 감소할 수 있습니다."
+memoryTotalTitle = "📊 합계"
+memoryAvailableTitle = "✅ 사용 가능"
+javaExecutableTitle = "☕ Java"
+javaExecSelDialogTitle = "Java 선택"
+javaExecSelButtonText = "📄 파일 선택"
+javaExecDesc = "☕ Java는 게임 실행 전에 검증됩니다."
+javaPathDesc = "⚠️ 경로는 <strong>{pathSuffix}</strong> 로 끝나야 합니다."
+jvmOptsTitle = "🛠️ 추가 JVM 옵션"
+jvmOptsDesc = "⚠️ 접속하려는 서버에 따라서 Java 버전이 달라질 수 있습니다."
+launcherTabHeaderText = "🚀 실행 설정"
+launcherTabHeaderDesc = "프로그램 자체 설정입니다."
+allowPrereleaseTitle = "⚠️베타 업데이트 허용"
+allowPrereleaseDesc = "베타 업데이트는 완전히 테스트 되거나 완성되어지지 않았습니다.<br>이는 베타 버전을 사용할 경우에만 해당됩니다."
+dataDirectoryTitle = "📂 데이터 경로"
+selectDataDirectory = "데이터 경로 선택"
+chooseFolder = "📂 폴더 선택"
+dataDirectoryDesc = "⚠️ 모든 게임 파일과 수동 설치 Java는 데이터 경로에 저장됩니다.<br>스크린샷은 실행하는 버전의 폴더에 저장됩니다."
+aboutTabHeaderText = "📜 정보"
+aboutTabHeaderDesc = "버전에 대한 릴리즈 노트를 볼 수 있습니다."
+aboutTitle = "{appName}"
+stableRelease = "안정적인 버전입니다."
+versionText = "버전 "
+sourceGithub = "📞 운영사무국"
+support = "🪪 계정"
+devToolsConsole = "DevTools Console"
+releaseNotes = "📋 릴리즈 노트"
+changelog = "👀 변경사항"
+noReleaseNotes = "📋 릴리즈 노트가 없습니다."
+viewReleaseNotes = "View Release Notes on GitHub"
+launcherUpdatesHeaderText = "☁️ 업데이트"
+launcherUpdatesHeaderDesc = "업데이트를 다운받을 수 있습니다."
+checkForUpdates = "✅ 업데이트 확인"
+whatsNew = "✨ 새로운 점"
+updateReleaseNotes = "👀 업데이트 릴리즈 노트"
+
+[ejs.waiting]
+waitingText = "Waiting for Microsoft.."
+
+[ejs.welcome]
+continueButton = "동의합니다✅"
+
+
+[js.discord]
+waiting = "👀 기다리는중..."
+state = "서버 : {shortId}"
+
+[js.index]
+microsoftLoginTitle = "Microsoft Login"
+microsoftLogoutTitle = "Microsoft Logout"
+
+[js.login]
+login = "로그인"
+loggingIn = "로그인 중"
+success = "성공"
+tryAgain = "다시 시도"
+
+[js.login.error]
+invalidValue = "* 올바르지 않음"
+requiredValue = "* 필수 입력란"
+
+[js.login.error.unknown]
+title = "로그인 중 알 수 없는 오류"
+desc = "알 수 없는 오류가 발생했습니다. 운영사무국에 문의해주세요."
+
+[js.landing.launch]
+pleaseWait = "기다려주세요.."
+failureTitle = "실행 중 오류"
+failureText = "문제가 발생했다면 환경변수를 확인해 주세요."
+okay = "확인"
+
+[js.landing.selectedAccount]
+noAccountSelected = "선택된 계정 없음"
+
+[js.landing.selectedServer]
+noSelection = "선택된 서버 없음"
+loading = "로딩중.."
+
+[js.landing.serverStatus]
+server = "서버"
+offline = "오프라인"
+players = "유저"
+
+[js.landing.systemScan]
+checking = "🔍시스템 정보 확인중.."
+noCompatibleJava = "호환되는<br>☕Java가 없습니다."
+installJavaMessage = "게임을 시작하려면, Java {major} 설치가 필요합니다. 사본을 설치하시겠습니까?"
+installJava = "📥자바 설치"
+installJavaManually = "⚒️수동으로 설치"
+javaDownloadPrepare = "☕Java 설치 준비중.."
+javaDownloadFailureTitle = "☕Java 다운로드중 오류"
+javaDownloadFailureText = "자바 환경변수 등을 설정해 보세요."
+javaRequired = "☕Java는<br>실행하는데 필수입니다."
+javaRequiredMessage = 'Java {major}의 64비트 설치가 실행하는데 필요합니다.<br><br><a href="https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html">Java 관리 가이드</a>를 확인해 자바를 수동 설치 하세요.'
+javaRequiredDismiss = "이해했습니다✅"
+javaRequiredCancel = "돌아가기"
+
+[js.landing.downloadJava]
+findJdkFailure = "OpenJDK 배포판을 찾지 못했습니다."
+javaDownloadCorruptedError = "다운로드한 JDK에 잘못된 해시가 있으므로, 파일이 손상되었을 수 있습니다."
+extractingJava = "☕Java 추출하기"
+javaInstalled = "☕Java 설치됨!"
+
+[js.landing.dlAsync]
+loadingServerInfo = "🔍서버 정보를 불러오는중.."
+fatalError = "치명적인 오류"
+unableToLoadDistributionIndex = "배포 색인의 복사본을 로드할 수 없습니다."
+pleaseWait = "☁️기다려주세요.."
+errorDuringLaunchTitle = "실행 중 오류"
+seeConsoleForDetails = "운영사무국에 문의해주세요."
+validatingFileIntegrity = "🔍파일 무결성을 검증하는중.."
+errorDuringFileVerificationTitle = "파일 검증 중 오류"
+downloadingFiles = "📥파일 다운로드중.."
+errorDuringFileDownloadTitle = "파일 다운로드중 오류"
+preparingToLaunch = "✨실행 준비중.."
+launchingGame = "🚀게임 실행중.."
+launchWrapperNotDownloaded = "주요 파일을 제대로 다운로드하지 못했기에 게임 실행이 불가능합니다.<br><br>이 문제를 해결하려면 백신 소프트웨어를 일시적으로 끄고 게임을 다시 시작해보세요.<br><br>시간이 있으시다면, <a href=\"https://discord.gg/aCBq9KmmrB\">문제</a>와 백신 프로그램의 종류를 알려주세요. 가능한 해결할 것입니다."
+doneEnjoyServer = "✅완료!"
+checkConsoleForDetails = "문제가 발생했다면 환경변수를 확인해 주세요."
+
+[js.landing.news]
+checking = "📰뉴스 확인중"
+
+[js.landing.discord]
+loading = "🚀게임 로딩중.."
+joining = "🚀착륙하는중..."
+joined = "✨게임중"
+
+[js.overlay]
+dismiss = "무시"
+
+[js.settings.fileSelectors]
+executables = "실행 파일"
+allFiles = "모든 파일"
+
+[js.settings.mstfLogin]
+errorTitle = "무언가 잘못 되었습니다."
+errorMessage = "😠당신이 크랙이나 서버 인증을 우회하려 한다면, 그만두는것이 정신건강에 좋습니다."
+okButton = "알겠습니다."
+
+[js.settings.mstfLogout]
+errorTitle = "무언가 잘못 되었습니다."
+errorMessage = "😠당신이 크랙이나 서버 인증을 우회하려 한다면, 그만두는것이 정신건강에 좋습니다."
+okButton = "알겠습니다."
+
+[js.settings.authAccountSelect]
+selectButton = "계정 선택"
+selectedButton = "선택됨 ✅"
+
+[js.settings.authAccountLogout]
+lastAccountWarningTitle = "⚠️주의<br>이 계정은 마지막 계정입니다."
+lastAccountWarningMessage = "한 계정에는 로그인 되어있어야 합니다.<br><br>로그아웃 하시겠습니까?"
+confirmButton = "로그아웃"
+cancelButton = "취소"
+
+[js.settings.authAccountPopulate]
+username = "닉네임 🪪"
+uuid = "UUID <em>공유 금지</em>"
+selectAccount = "계정 선택"
+selectedAccount = "선택됨 ✅"
+logout = "로그아웃"
+
+[js.settings.dropinMods]
+removeButton = "Remove"
+deleteFailedTitle = "Failed to Delete<br>Drop-in Mod {fullName}"
+deleteFailedMessage = "Make sure the file is not in use and try again."
+failedToggleTitle = "Failed to Toggle<br>One or More Drop-in Mods"
+okButton = "Okay"
+
+[js.settings.serverListing]
+mainServer = "✨중앙 서버"
+
+[js.settings.java]
+selectedJava = "Selected: Java {version} ({vendor})"
+invalidSelection = "게임 실행을 단 한번도 안했거나, 잘못된 선택란입니다."
+requiresJava = "Java {major} x64가 필요합니다."
+availableOptions = "Java {major} (HotSpot VM)을 사용할 수 있습니다."
+
+[js.settings.about]
+preReleaseTitle = "베타 버전"
+stableReleaseTitle = "안정된 버전"
+releaseNotesFailed = "릴리즈 노트를 불러오는데 실패했습니다."
+
+[js.settings.updates]
+newReleaseTitle = "새로운 버전이 사용가능합니다."
+newPreReleaseTitle = "새로운 베타 버전이 사용가능합니다."
+downloadingButton = "📥 다운로드중.."
+downloadButton = '📥 수동 설치<span style="font-size: 10px;color: gray;text-shadow: none !important;">런처를 닫고, dmg 파일을 실행해 업데이트를 진행해 주세요.</span>'
+latestVersionTitle = "최신 버전입니다."
+checkForUpdatesButton = "✅ 업데이트 확인"
+checkingForUpdatesButton = "🔍 업데이트 확인중.."
+
+[js.settings.msftLogin]
+errorTitle = "Microsoft Login Failed"
+errorMessage = "We were unable to authenticate your Microsoft account. Please try again."
+okButton = "OK"
+
+[js.uibinder.startup]
+fatalErrorTitle = "치명적인 오류: 구성값을 들고오지 못했습니다."
+fatalErrorMessage = "운영사무국에 문의해주세요."
+closeButton = "닫기"
+
+[js.uibinder.validateAccount]
+failedMessageTitle = "🔐 재로그인 실패"
+failedMessage = "<strong>{account}</strong>에 재로그인하는데 실패했습니다. 다른 계정을 선택하거나 로그인 해주세요."
+failedMessageSelectAnotherAccount = "<strong>{account}</strong>에 재로그인하는데 실패했습니다. 다시 로그인 해주세요."
+loginButton = "🔐 로그인"
+selectAnotherAccountButton = "🪪 다른 계정 선택"
+
+[js.uicore.autoUpdate]
+checkingForUpdateButton = "🔍 업데이트 확인중..."
+installNowButton = "📥 설치하기"
+checkForUpdatesButton = "✅ 업데이트 확인"
+
+[js.auth.microsoft.error]
+noProfileTitle = "Error During Login:<br>Profile Not Set Up"
+noProfileDesc = "Your Microsoft account does not yet have a Minecraft profile set up. If you have recently purchased the game or redeemed it through Xbox Game Pass, you have to set up your profile on <a href=\"https://minecraft.net/\">Minecraft.net</a>.<br><br>If you have not yet purchased the game, you can also do that on <a href=\"https://minecraft.net/\">Minecraft.net</a>."
+noXboxAccountTitle = "Error During Login:<br>No Xbox Account"
+noXboxAccountDesc = "Your Microsoft account has no Xbox account associated with it."
+xblBannedTitle = "Error During Login:<br>Xbox Live Unavailable"
+xblBannedDesc = "Your Microsoft account is from a country where Xbox Live is not available or banned."
+under18Title = "Error During Login:<br>Parental Approval Required"
+under18Desc = "Accounts for users under the age of 18 must be added to a Family by an adult."
+unknownTitle = "Unknown Error During Login"
+unknownDesc = "An unknown error has occurred. Please see the console for details."
+
+[js.auth.mojang.error]
+methodNotAllowedTitle = "허용되지 않는 글자입니다."
+methodNotAllowedDesc = "이 글자는 허용되지 않습니다."
+notFoundTitle = "치명적인 오류:<br>서버 연결 오류"
+notFoundDesc = "인증 서버에 연결하지 못했습니다. 운영사무국에 문의해주세요."
+accountMigratedTitle = "로그인 중 오류:<br>계정 마이그레이션됨"
+accountMigratedDesc = "마이그레이션된 계정에 로그인을 시도했습니다."
+invalidCredentialsTitle = "올바르지 않음"
+invalidCredentialsDesc = "닉네임이나 비밀번호가 올바르지 않습니다. 다시 시도해 주세요."
+tooManyAttemptsTitle = "시도횟수가 너무 많습니다."
+tooManyAttemptsDesc = "최근 시도한 로그인 횟수가 너무 많습니다. 나중에 다시 시도해 주세요."
+invalidTokenTitle = "올바르지 않은 토큰"
+invalidTokenDesc = "엑세스 토큰이 올바르지 않습니다."
+tokenHasProfileTitle = "로그인 중 오류:<br>토큰이 프로필을 가짐"
+tokenHasProfileDesc = "엑세스 토큰에 이미 프로필이 할당되어있습니다. 프로필 선택은 아직 불가능합니다."
+credentialsMissingTitle = "로그인 중 오류:<br>자격증명 누락"
+credentialsMissingDesc = "닉네임또는 비밀번호가 제출되지 않았거나 비밀번호가 3자 미만입니다."
+invalidSaltVersionTitle = "Error During Login:<br>Invalid Salt Version"
+invalidSaltVersionDesc = "Invalid salt version."
+unsupportedMediaTypeTitle = "치명적인 오류:<br>지원하지 않는 미디어 유형"
+unsupportedMediaTypeDesc = "미디어 유형을 지원하지 않습니다. 운영사무국에 문의해주세요."
+accountGoneTitle = "로그인 중 오류:<br>계정 마이그레이션됨"
+accountGoneDesc = "Account has been migrated to a Microsoft account. Please log in with Microsoft."
+unreachableTitle = "로그인 중 오류:<br>연결할 수 없음"
+unreachableDesc = "인증 서버에 연결할 수 없습니다. 온라인 상태이고 인터넷에 연결되어 있는지 확인하세요."
+gameNotPurchasedTitle = "로그인 중 오류:<br>게임이 구매되지 않음"
+gameNotPurchasedDesc = "로그인 하려는 계정은 유료 세션을 구매하지 않았습니다. <a href=\"https://www.moondoor.r-e.kr/\">공식 홈페이지</a>에서 구매해 주세요."
+unknownErrorTitle = "로그인 중 알 수 없는 오류"
+unknownErrorDesc = "알 수 없는 오류가 발생했습니다. 운영사무국에 문의해주세요."
